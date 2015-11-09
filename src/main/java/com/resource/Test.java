@@ -7,7 +7,7 @@ import javax.ws.rs.Produces;
 /**
  * Created by daniela.domnici on 06/11/15.
  */
-@Path("/employee")
+@Path("/test")
 public class Test {
         // The Java method will process HTTP GET requests
         @GET
