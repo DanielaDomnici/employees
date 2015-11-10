@@ -16,5 +16,6 @@ public class Demo extends JerseyTest{
         WebResource webResource = resource();
         String responseMsg = webResource.path("api").get(String.class);
         System.out.println(responseMsg);
+        Assert.assertEquals("{\"birthday\":\"27 04 1988\",\"cnp\":\"1882704069887\",\"name\":\"MihaiPppescu\",\"id\":1}", responseMsg);
     }
 }
