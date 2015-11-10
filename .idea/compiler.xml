@@ -24,9 +24,17 @@
         <processorPath useClasspath="true" />
         <module name="Employees" />
       </profile>
+      <profile default="false" name="Annotation profile for employees" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="true" />
+        <module name="employees" />
+      </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="Employees" target="1.6" />
+      <module name="employees" target="1.6" />
     </bytecodeTargetLevel>
   </component>
 </project>

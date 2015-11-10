@@ -4,10 +4,13 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
 
 import com.Employee;
+import com.EmployeeDao;
 import com.QualityAssurance;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
  * Created by daniela.domnici on 09/11/15.
@@ -21,7 +24,7 @@ public class Api {
 
     @GET
     @Produces("application/json")
-    public Response GetCreatedEmployee() throws JSONException {
+    public Response GetCreatedEmployee() {
         Employee em1 = new Employee();
         em1.setId(id);
         em1.setName(name);

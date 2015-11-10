@@ -1,11 +1,14 @@
 package com.resource;
 
+import org.glassfish.grizzly.http.util.HttpStatus;
 import org.json.JSONObject;
 
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
+import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 
 /**
  * Created by daniela.domnici on 06/11/15.
@@ -13,9 +16,9 @@ import javax.ws.rs.core.Response;
 @Path("/test")
 public class Test {
         // The Java method will process HTTP GET requests
-        @GET
+       @GET
         // The Java method will produce content identified by the MIME Media
-        // type "text/plain"
+        // type "application/json"
         @Produces("application/json")
         public Response getClichedMessage() {
             JSONObject jsonObject = new JSONObject();
