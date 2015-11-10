@@ -2,6 +2,7 @@ package com;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
  * Created by daniela.domnici on 09/11/15.
@@ -30,5 +31,4 @@ public class EmployeeDao {
 
         return employees;
     }
-
 }
