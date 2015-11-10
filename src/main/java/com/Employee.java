@@ -16,8 +16,12 @@ public class Employee {
         this.cnp = cnp;
     }
 
+    public Employee() {
+    }
+
     /**
      * Public function "getter" for the defined input variable "name"
+     *
      * @return
      */
     public String getName() {
@@ -26,6 +30,7 @@ public class Employee {
 
     /**
      * Public function "setter" for the defined input variable "name"
+     *
      * @param name
      */
     public void setName(String name) {
@@ -34,6 +39,7 @@ public class Employee {
 
     /**
      * Public function "getter" for the defined input variable "birthDate"
+     *
      * @return
      */
     public String getBirthDate() {
@@ -42,6 +48,7 @@ public class Employee {
 
     /**
      * Public function "setter" for the defined input variable "birthDate"
+     *
      * @param birthDate
      */
     public void setBirthDate(String birthDate) {
@@ -50,6 +57,7 @@ public class Employee {
 
     /**
      * Public function "getter" for the defined input variable "cnp"
+     *
      * @return
      */
     public String getCnp() {
@@ -58,6 +66,7 @@ public class Employee {
 
     /**
      * Public function "setter" for the defined input variable "cnp"
+     *
      * @param cnp
      */
     public void setCnp(String cnp) {
@@ -66,10 +75,19 @@ public class Employee {
 
     /**
      * Public function "getter" for the defined input variable "id"
+     *
      * @return
      */
     public int getId() {
         return id;
     }
 
+    /**
+     * Public function "setter" for the defined input variable "id"
+     *
+     * @param id
+     */
+    public void setId(int id) {
+        this.id = id;
+    }
 }
