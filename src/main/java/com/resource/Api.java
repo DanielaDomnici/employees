@@ -1,6 +1,7 @@
 package com.resource;
 
 import javax.ws.rs.*;
+import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import com.Employee;
@@ -10,6 +11,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.awt.*;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
@@ -17,30 +19,36 @@ import java.util.concurrent.CopyOnWriteArrayList;
  */
 @Path("/api")
 public class Api {
-    private int id = 1;
-    private String name ="MihaiPppescu";
-    private String cnp = "1882704069887";
-    private String birthday = "27 04 1988";
 
     @GET
+    @Path("/get")
     @Produces("application/json")
-    public Response GetCreatedEmployee() {
-        Employee em1 = new Employee();
-        em1.setId(id);
-        em1.setName(name);
-        em1.setCnp(cnp);
-        em1.setBirthDate(birthday);
+    public Employee GetCreatedEmployee() {
+        Employee employee = new Employee();
+        employee.setId(1);
+        employee.setName("MihaiPppescu");
+        employee.setCnp("1882704069887");
+        employee.setBirthDate("27 04 1988");
+        return employee;
+    }
 
-        JSONArray array = new JSONArray();
-        JSONObject jsonObject = new JSONObject();
-        jsonObject.put("id", id);
-        jsonObject.put("name", name);
-        jsonObject.put("cnp", cnp);
-        jsonObject.put("birthday", birthday);
+    @GET
+    @Path("/get/{id}")
+    @Produces("application/json")
+    public Employee GetCreatedEmployee(@PathParam("id") int id) {
+        Employee employee = new Employee();
+        employee.setId(id);
+        employee.setName("MihaiPppescu");
+        employee.setCnp("1882704069887");
+        employee.setBirthDate("27 04 1988");
+        return employee;
+    }
 
-        array.put(jsonObject);
-
-        String result = "Output: \n\nEmployee added: \n\n" + jsonObject;
+    @POST
+    @Path("/post")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response createEmployeeInJSON(Employee employee) {
+        String result = "Employee saved : " + employee;
         return Response.status(201).entity(result).build();
     }
 }
