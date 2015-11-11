@@ -123,7 +123,7 @@
                 </configuration>
             </plugin>
         </plugins>
-        <finalName>api</finalName>
+        <finalName>rest</finalName>
     </build>
 
 </project>

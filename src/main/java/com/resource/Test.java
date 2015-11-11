@@ -1,14 +1,9 @@
 package com.resource;
 
-import org.glassfish.grizzly.http.util.HttpStatus;
 import org.json.JSONObject;
 
 import javax.ws.rs.*;
-import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 
 /**
  * Created by daniela.domnici on 06/11/15.
@@ -30,5 +25,4 @@ public class Test {
             String result = "Output: " + jsonObject;
             return Response.status(200).entity(result).build();
         }
-
-    }
+}
