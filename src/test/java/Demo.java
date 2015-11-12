@@ -1,8 +1,13 @@
 import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.ClientResponse;
 import com.sun.jersey.api.client.WebResource;
+import com.sun.jersey.api.container.httpserver.HttpServerFactory;
+import com.sun.net.httpserver.HttpServer;
 import org.junit.Assert;
 import org.junit.Test;
+import org.testng.annotations.BeforeTest;
+
+import java.io.IOException;
 
 /**
  * Created by daniela.domnici on 11/11/15.
@@ -10,29 +15,28 @@ import org.junit.Test;
 public class Demo {
 
     @Test
-    public void testGetEmployee() {
+    public void testGet() {
         Client client = Client.create();
 
-        WebResource resource = client.resource("http://localhost:8080/rest/myApplication/api/get");
+        WebResource resource = client.resource("http://localhost:8080/myApplication/rest/api/test/get");
 
-        ClientResponse response = resource.accept("application/json").get(ClientResponse.class);
+        ClientResponse response = resource.accept("text/plain").get(ClientResponse.class);
 
         if (response.getStatus() != 200){
-            throw  new RuntimeException("Request failed!");
+            throw new RuntimeException("Request failed : " + response.getStatus());
         }
 
-
         String output = response.getEntity(String.class);
-        Assert.assertEquals("{\"birthday\":\"27 04 1988\",\"cnp\":\"1882704069887\",\"name\":\"MihaiPppescu\",\"id\":1}", output);
+        Assert.assertEquals("Hello World", output);
     }
 
     @Test
     public void testPost(){
         Client client = Client.create();
 
-        WebResource webResource = client.resource("http://localhost:8080/rest/myApplication/api/post");
+        WebResource webResource = client.resource("http://localhost:8080/myApplication/rest/api/test/post");
 
-        String input = "{\"birthday\":\"27 04 1988\",\"cnp\":\"1882704069887\",\"name\":\"MihaiPppescu\",\"id\":1}";
+        String input = "Created Post";
 
         ClientResponse response = webResource.type("application/json").post(ClientResponse.class, input);
 
@@ -41,7 +45,7 @@ public class Demo {
         }
 
         String output = response.getEntity(String.class);
-        System.out.println(output);
+        Assert.assertEquals("Created Post!", output);
     }
 }
 

@@ -26,7 +26,7 @@ import org.junit.Before;
 /**
  * Created by daniela.domnici on 09/11/15.
  * Get the JerseyTest class and customize it.
- * This class is a base class used for test runs. (The tests will inherit this class.)
+ * This class is a base class used for the tests that runs on the grizzly server. (The tests will inherit this class.)
  */
 
 public abstract class JerseyTest {

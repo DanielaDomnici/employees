@@ -9,9 +9,13 @@ import javax.ws.rs.core.UriBuilder;
 import java.io.IOException;
 import java.net.URI;
 
+/**
+ * Public class used for starting the local grizzly server
+ * This class used for Testare class which inherit the TerseyTest
+ *
+ */
+
 public class Server {
-
-
     /**
      * Private method to get the the base url format 'http://localhost:8080'
      * @return

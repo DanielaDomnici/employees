@@ -2,15 +2,66 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
+
+    <groupId>Employees</groupId>
+    <artifactId>Employees</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>war</packaging>
+
+    <!--Add the maven dependencies-->
     <dependencies>
+        <dependency>
+            <groupId>javax.ws.rs</groupId>
+            <artifactId>javax.ws.rs-api</artifactId>
+            <version>2.0.1</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>3.1.0</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.sun.jersey</groupId>
+            <artifactId>jersey-bundle</artifactId>
+            <version>1.19</version>
+        </dependency>
+
         <dependency>
             <groupId>org.json</groupId>
             <artifactId>json</artifactId>
             <version>20140107</version>
         </dependency>
+
         <dependency>
             <groupId>com.sun.jersey</groupId>
-            <artifactId>jersey-client</artifactId>
+            <artifactId>jersey-server</artifactId>
+            <version>1.19</version>
+        </dependency>
+        <dependency>
+            <groupId>com.sun.jersey</groupId>
+            <artifactId>jersey-core</artifactId>
+            <version>1.19</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+            <version>6.9.6</version>
+        </dependency>
+
+        <dependency>
+            <groupId>asm</groupId>
+            <artifactId>asm</artifactId>
+            <version>3.1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.sun.jersey</groupId>
+            <artifactId>jersey-grizzly2</artifactId>
             <version>1.19</version>
         </dependency>
         <dependency>
@@ -18,112 +69,60 @@
             <artifactId>jersey-test-framework-core</artifactId>
             <version>1.19</version>
         </dependency>
+
+        <dependency>
+            <groupId>javax.ws.rs</groupId>
+            <artifactId>jsr311-api</artifactId>
+            <version>0.11</version>
+        </dependency>
     </dependencies>
 
-    <parent>
-        <groupId>com.sun.jersey.samples</groupId>
-        <artifactId>jersey-samples</artifactId>
-        <version>1.17</version>
-    </parent>
-
-    <artifactId>Employees</artifactId>
-    <name>Employees</name>
-    <packaging>jar</packaging>
-
-    <profiles>
-        <profile>
-            <id>daniela</id>
-            <activation>
-                <property>
-                    <name>daniela</name>
-                </property>
-            </activation>
-            <dependencies>
-
-                <dependency>
-                    <groupId>com.sun.jersey</groupId>
-                    <artifactId>jersey-grizzly2</artifactId>
-                    <version>1.19</version>
-                    <classifier>daniela</classifier>
-                </dependency>
-
-                <dependency>
-                    <groupId>com.sun.jersey.jersey-test-framework</groupId>
-                    <artifactId>jersey-test-framework-grizzly2</artifactId>
-                    <version>1.19</version>
-                    <scope>test</scope>
-                    <classifier>daniela</classifier>
-                </dependency>
-
-            </dependencies>
-        </profile>
-
-        <profile>
-            <id>default</id>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
-            <dependencies>
-                <dependency>
-                    <groupId>com.sun.jersey</groupId>
-                    <artifactId>jersey-grizzly2</artifactId>
-                    <version>1.19</version>
-                </dependency>
-                <dependency>
-                    <groupId>com.sun.jersey.jersey-test-framework</groupId>
-                    <artifactId>jersey-test-framework-grizzly2</artifactId>
-                    <version>1.19</version>
-                    <scope>test</scope>
-                </dependency>
-            </dependencies>
-        </profile>
-
-        <profile>
-            <id>release</id>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-javadoc-plugin</artifactId>
-                        <configuration>
-                            <links>
-                                <link>http://jsr311.java.net/nonav/releases/1.1</link>
-                            </links>
-                        </configuration>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-    </profiles>
-
     <build>
+        <finalName>rest</finalName>
+
         <plugins>
+
             <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>exec-maven-plugin</artifactId>
-                <version>1.2.1</version>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>java</goal>
-                        </goals>
-                    </execution>
-                </executions>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>2.3</version>
                 <configuration>
-                    <mainClass>com.server.Server</mainClass>
+                    <webXml>src/main/webapp/WEB-INF/web.xml</webXml>
+                    <warName>employees.war</warName>
+                    <goal>
+                    </goal>
                 </configuration>
             </plugin>
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <inherited>true</inherited>
+                <version>3.3</version>
                 <configuration>
                     <source>1.6</source>
                     <target>1.6</target>
                 </configuration>
             </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-failsafe-plugin</artifactId>
+                <version>2.12.4</version>
+                <executions>
+                    <execution>
+                        <id>integration-test</id>
+                        <goals>
+                            <goal>integration-test</goal>
+                            <goal>verify</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+            </plugin>
         </plugins>
-        <finalName>rest</finalName>
     </build>
 
 </project>
