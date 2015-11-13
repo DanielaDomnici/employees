@@ -48,6 +48,13 @@ public class Api {
     }
 
     @POST
+    @Path("/post/test")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public String addEmployee(String data) {
+        String result = "Input: " + data;
+        return result;
+    }
+    @POST
     // The Java method will produce/consume content identified by the MIME Media type "application/json"
     @Path("/post")
     @Produces("application/json")
@@ -76,6 +83,4 @@ public class Api {
         employee.setName(employee.getName() + "employee updated");
         return employee;
     }
-
-
 }

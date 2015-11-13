@@ -15,10 +15,12 @@ import java.io.IOException;
 public class Demo {
 
     @Test
-    public void testGet() {
+    public void testGet() throws IOException {
+        HttpServer server = HttpServerFactory.create("http://localhost:8080/");
+        server.start();
         Client client = Client.create();
 
-        WebResource resource = client.resource("http://localhost:8080/myApplication/rest/api/test/get");
+        WebResource resource = client.resource("http://localhost:8080/api/test/get");
 
         ClientResponse response = resource.accept("text/plain").get(ClientResponse.class);
 
@@ -28,25 +30,30 @@ public class Demo {
 
         String output = response.getEntity(String.class);
         Assert.assertEquals("Hello World", output);
+        server.stop(0);
     }
 
     @Test
-    public void testPost(){
+    public void testPost() throws IOException {
+        HttpServer server = HttpServerFactory.create("http://localhost:8080/");
+        server.start();
         Client client = Client.create();
 
-        WebResource webResource = client.resource("http://localhost:8080/myApplication/rest/api/test/post");
+        WebResource webResource = client.resource("http://localhost:8080/api/test/post");
 
         String input = "Created Post";
 
         ClientResponse response = webResource.type("application/json").post(ClientResponse.class, input);
 
-        if (response.getStatus() != 201) {
+        if (response.getStatus() != 200) {
             throw new RuntimeException("Failed : HTTP error code : " + response.getStatus());
         }
 
         String output = response.getEntity(String.class);
         Assert.assertEquals("Created Post!", output);
+        server.stop(0);
     }
+
 }
 
 
